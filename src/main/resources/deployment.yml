@@ -1,0 +1,57 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: springboot
+  labels:
+    name: springboot
+spec:
+  ports:
+    - nodePort: 30164 
+      port: 8080      
+      targetPort: 8080  
+      protocol: TCP
+  selector:           
+    app: springboot
+  type: LoadBalancer       
+
+---
+apiVersion: apps/v1 
+kind: Deployment    
+metadata:              
+  name: springboot
+spec:                
+  selector:         
+    matchLabels:
+      app: springboot
+  replicas: 3        
+  template:
+    metadata:
+      labels:        
+        app: springboot
+    spec:
+      containers:
+        - name: springboot
+          image: 100598/springboot:1.0
+          ports:
+            - containerPort: 8080                
+          env:   # Setting Enviornmental Variables
+          - name: DB_HOST   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: db-conf  # name of configMap
+                key: host
+          - name: DB_NAME  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: db-conf 
+                key: name
+          - name: DB_USERNAME  # Setting Database username from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials # Secret Name
+                key: username
+          - name: DB_PASSWORD # Setting Database password from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: password     
