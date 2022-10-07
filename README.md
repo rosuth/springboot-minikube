@@ -29,7 +29,7 @@ Now you need two images:
 
 Next steps would be:
 
-1. Clone the source code from Github using "git clone https://github.com/clonerohit/springboot-docker-minikube"
+1. Clone the source code from Github using "git clone https://github.com/rowhyt/springboot-docker-minikube"
 2. Now go to src/main/resources, you'll see five YML files which will deploy your application to minikube cluster
 3. Open all the files in a text editor and change according to your need else let it be as it is
 4. Run "mvn install" to generate the artifact
