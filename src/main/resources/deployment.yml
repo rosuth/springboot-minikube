@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: springboot
+  name: springboot-minikube
   labels:
-    name: springboot
+    name: springboot-minikube
 spec:
   ports:
     - nodePort: 30164 
@@ -11,27 +11,27 @@ spec:
       targetPort: 8080  
       protocol: TCP
   selector:           
-    app: springboot
+    app: springboot-minikube
   type: LoadBalancer       
 
 ---
 apiVersion: apps/v1 
 kind: Deployment    
 metadata:              
-  name: springboot
+  name: springboot-minikube
 spec:                
   selector:         
     matchLabels:
-      app: springboot
+      app: springboot-minikube
   replicas: 3        
   template:
     metadata:
       labels:        
-        app: springboot
+        app: springboot-minikube
     spec:
       containers:
-        - name: springboot
-          image: 100598/springboot:1.0
+        - name: springboot-minikube
+          image: {hub-username}/springboot-minikube:1.0
           ports:
             - containerPort: 8080                
           env:   # Setting Enviornmental Variables

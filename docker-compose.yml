@@ -1,8 +1,8 @@
 version: '3'
 services:
     springboot:
-        container_name: springboot
-        image: 100598/springboot:1.0
+        container_name: springboot-minikube
+        image: {hub-username}/springboot-minikube:1.0
         ports: 
         - 9090:8080
     mysql:
@@ -10,9 +10,9 @@ services:
         image: mysql:5.7
         environment:
         - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_USER=rohit
-        - MYSQL_PASSWORD=1234
-        - MYSQL_DATABASE=USERS
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=root
+        - MYSQL_DATABASE=demo
         volumes:
         - appvolume:/var/lib/mysql
 volumes:

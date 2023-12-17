@@ -10,11 +10,11 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com</groupId>
-	<artifactId>springboot-docker-minikube</artifactId>
+	<artifactId>springboot-minikube</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Spring Boot Sample</name>
-	<description>Spring Boot Sample</description>
+	<name>springboot-minikube</name>
+	<description>springboot-minikube</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -80,7 +80,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-        <finalName>springboot</finalName>
+        <finalName>springboot-minikube</finalName>
 	</build>
 
 </project>

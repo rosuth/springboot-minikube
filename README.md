@@ -29,7 +29,7 @@ Now you need two images:
 
 Next steps would be:
 
-1. Clone the source code from Github using "git clone https://github.com/rowhyt/springboot-docker-minikube"
+1. Clone the source code from Github using "git clone https://github.com/rosuth/springboot-minikube"
 2. Now go to src/main/resources, you'll see five YML files which will deploy your application to minikube cluster
 3. Open all the files in a text editor and change according to your need else let it be as it is
 4. Run "mvn install" to generate the artifact
@@ -38,7 +38,7 @@ Next steps would be:
 To build the docker image, use the below commands:
 
 ```
-docker build -t 100598/springboot:1.0 .
+docker build -t {hub-username}/springboot-minikube:1.0 .
 docker pull mysql:5.7
 ```
 
@@ -203,9 +203,9 @@ That's a big file because it contains three things:
 kind: Service
 apiVersion: v1
 metadata:
-  name: springboot
+  name: springboot-minikube
   labels:
-    name: springboot
+    name: springboot-minikube
 spec:
   ports:
     - nodePort: 30164 
@@ -220,20 +220,20 @@ spec:
 apiVersion: apps/v1 
 kind: Deployment    
 metadata:              
-  name: springboot
+  name: springboot-minikube
 spec:                
   selector:         
     matchLabels:
-      app: springboot
+      app: springboot-minikube
   replicas: 3        
   template:
     metadata:
       labels:        
-        app: springboot
+        app: springboot-minikube
     spec:
       containers:
-        - name: springboot
-          image: 100598/springboot:1.0
+        - name: springboot-minikube
+          image: {hub-username}/springboot-minikube:1.0
           ports:
             - containerPort: 8080                
           env:   
